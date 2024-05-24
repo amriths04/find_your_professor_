@@ -1,0 +1,227 @@
+
+body {
+    min-height: 99vh;
+    background: rgb(16, 28, 31);
+    
+}
+@font-face {
+    font-family:'A1' ;
+    src: url('/front-end/fonts/Dune_Rise.ttf') format('truetype');
+  }
+
+
+.header{
+    font-family: 'A1';
+    position:relative;
+    font-weight: 1000;
+    font-size: 27px;
+    color: #f8f8f8;
+    top: 10px;
+  
+  }
+.menu-bar {
+    position: fixed;
+    font-family: 'A1';
+    top: 0;
+    left: 20%; /* Push to the top right corner */
+    width: auto; /* Adjust width as needed */
+    background-color: rgba(10, 9, 7, 0); /* Adjust alpha value as needed */
+    padding: 1vh 1vw; /* Adjust padding as needed */
+}
+
+.menu-bar ul li a:hover {
+    background-color: #2f92ad;
+    transform: scale(1.1); /* Apply zoom effect on hover */
+}
+
+.menu-bar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(10, 9, 7, 0); /* Adjust alpha value as needed */
+    padding: 1vh 0; /* Adjust padding as needed */
+}
+.menu-bar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 1vh 0; /* Adjust padding using relative units */
+    text-align: center;
+}
+
+.menu-bar ul li {
+    display: inline-block;
+    margin-right: 0vw; /* Adjust margin using relative units */
+}
+
+.menu-bar ul li:last-child {
+    margin-right: 0;
+}
+
+.menu-bar ul li a {
+    display: block;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 2vh 3vw; /* Adjust padding using relative units */
+    font-size: 2vh; /* Adjust font size using relative units */
+}
+
+.menu-bar ul li a:hover {
+    background-color: #08080800;
+    border-radius: 100%;
+        transform: scale(1.25); /* Increase the scale factor for a larger zoom effect */
+}
+
+.dropdown {
+    position: relative;
+}
+
+.phone {
+    color: #ffe6e6;
+    font-size: 2vh; /* Adjust font size using relative units */
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%; /* Position the dropdown above the menu bar */
+    right: 0.5px;
+    background-color: #33333300;
+    min-width: 160px;
+    z-index: 5;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 0vh 0.5vw; /* Adjust padding using relative units */
+    color: #fff;
+    text-decoration: none;
+}
+
+.dropdown-content a:hover {
+    background-color: #555;
+    color: #fff;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.content {
+    display: flex; /* Use flexbox for the layout */
+    flex-direction: column; /* Adjust flex-direction */
+    align-items: center; /* Center items horizontally */
+    padding: 1vh; /* Adjust padding using relative units */
+    margin-top: 15vh; /* Adjust margin-top to accommodate the menu bar */
+}
+@keyframes colorChange {
+    0% {
+        background-position: 0 0;
+    }
+  
+    100% {
+        background-position: 100% 0;
+    }
+  }
+  
+  h1 {
+    background: linear-gradient(to right, #ff0000, #00ff00, #0000ff, #ffffff, #050500);
+    /* Change colors as needed */
+    background-size: 500% 100%;
+    /* Adjust size based on the number of colors */
+    animation: colorChange 10s linear infinite;
+    /* Change the duration (5s) and timing function as needed */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  h1 {
+    text-align: left;
+    margin-left: 2%;
+    text-emphasis: none;
+      font-size: 30px;
+      font-family: Algerian, sans-serif;
+      /* Apply Algerian font style */
+      font-weight: bold;
+      /* Make it bold */
+      
+      
+   
+  }
+
+#team-section {
+    max-width: 100vw; /* Adjust max-width using relative units */
+    margin-top: 10vh; /* Adjust margin-top using relative units */
+}
+
+.team-member {
+    margin-bottom: 2vh; /* Adjust margin-bottom using relative units */
+}
+
+.team-info {
+    padding: 2vh; /* Adjust padding using relative units */
+}
+
+.team-info h2 {
+    margin-top: 0;
+    text-align: center;
+}
+.xyz,.xyzz {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100%; /* Ensure the container takes up the full height */
+    
+    
+}
+ /* CSS for paragraphs */
+ p {
+    font-size: 16px; /* Set the font size */
+    line-height: 1.5; /* Set the line height */
+    color: peachpuff; /* Set the text color */
+    margin-bottom: 20px;
+    margin-left: 20%;
+    margin-right: 20%; /* Set the bottom margin */
+}
+.xyz img,.xyzz img {
+    max-width: 21%; /* Ensure the image does not exceed the container width */
+    height: auto; /* Maintain aspect ratio */
+}
+
+
+.sidebar {
+    width: 90vw; /* Adjust width using relative units */
+    max-width: 400px; /* Adjust max-width using relative units */
+    background-color: #c2777700;
+    padding: 2vh;
+    font-size:33px;
+    color: #fffdfd;
+    text-align: center;
+    margin: 2vh auto; /* Adjust margin using relative units */
+}
+
+.sidebar h3 {
+    margin-top: 0;
+}
+
+.social-icons {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 2vh; /* Adjust margin-top using relative units */
+}
+
+.social-icons li {
+    margin-bottom: 1vh; /* Adjust margin-bottom using relative units */
+}
+
+.social-icons li a {
+    color: #ffffff;
+    text-decoration: none;
+    display: block;
+}
+
+.social-icons li a:hover {
+    color: #d43636;
+}
+
+.social-icons li i {
+    margin-right: 5px;
+}

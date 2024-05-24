@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professor Dashboard</title>
+  <link rel="stylesheet" href="css/fmessages.css">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="welcome-text" id="welcomeText"></div>
+  <nav class="sidebar">
+    <ul>
+      <li><a href="facultyhomepage.html"><i class="fas fa-home"></i></a></li>
+      <li><a href="facultyinsert.html?facultyId=${facultyId}"><i class="fas fa-user-plus"></i></a></li>
+      <li><a href="#" class="notification-btn"><i class="fas fa-bell"></i></a></li>
+      <li><a href="fmessages.html?facultyId=${facultyId}"><i class="fas fa-envelope"></i></a></li>
+      <li><a href="fsearch.html"><i class="fas fa-search"></i></a></li>
+      <li><a href="studentaboutus.html"><i class="fas fa-info-circle"></i></a></li>
+    </ul>
+    <div class="professor-icon">
+        <i class="fas fa-user-tie"></i>
+    </div>
+    
+    <button class="logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i></button>
+
+  </nav>
+  <div class="messagelog">
+  <table>
+    <thead>
+        <tr>
+            <th>USERNAME</th>
+            <th>COMMENT</th>
+            <th>RECEIVED AT</th>
+        </tr>
+    </thead>
+    <tbody id="commentTableBody">
+        <!-- Faculty details will be dynamically inserted here -->
+    </tbody>
+</table>
+</div>
+
+<div class="findmyprofessor">
+    <p>REPLY</p>
+</div>
+
+<!-- Notification Tab -->
+<div id="notificationTab" class="notificationTab">
+    <span class="close">&times;</span>
+</div>
+
+<!-- Reply Section -->
+<div class="reply-section">
+    <div id="replyForm" style=" text-align: center;">
+       
+       
+        <textarea id="to" rows="4" cols="50" style="margin-bottom: 10px;" placeholder="TO:"></textarea><br>
+        <textarea id="comment" rows="4" cols="50" style="margin-bottom: 10px;" placeholder="Enter your reply..."></textarea><br>
+        <button class="submitreply" style="background-color: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease;">Submit Reply</button>
+    </div>
+</div>
+
+
+<script>
+    const logoutBtn = document.querySelector('.logout-btn');
+    const notificationBtn = document.querySelector('.notification-btn');
+    const notificationTab = document.querySelector('.notificationTab');
+    const closeBtn = document.querySelector('.close');
+    const replyBtn = document.querySelector('.reply-btn');
+    const replyForm = document.getElementById('replyForm');
+    const submitReplyBtn = document.getElementById('submitReply');
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const facultyId = urlParams.get('facultyId');
+    const facultyName = urlParams.get('facultyName');
+
+    // Now you can use the facultyId in your JavaScript code as needed
+    console.log(facultyId);
+
+    notificationBtn.addEventListener('click', (event) => {
+        event.stopPropagation();
+        const rect = notificationBtn.getBoundingClientRect();
+        notificationTab.style.display = 'block';
+        notificationTab.style.top = `${rect.bottom}px`;
+        notificationTab.style.left = `${rect.left}px`;
+    });
+
+    window.addEventListener('click', (event) => {
+        if (!event.target.closest('.notificationTab') && event.target !== notificationBtn) {
+            notificationTab.style.display = 'none';
+        }
+    });
+
+    closeBtn.addEventListener('click', () => {
+        notificationTab.style.display = 'none';
+    });
+
+    logoutBtn.addEventListener('click', () => {
+        window.location.href = 'facultylogin.html';
+    });
+
+   
+
+   
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const facultyId = urlParams.get('facultyId');
+        const facultyName = urlParams.get('facultyName');
+        console.log(facultyId);
+
+        // Fetch faculty details from the backend
+        const updateComments = () => {
+            fetch(`http://localhost:5003/get-comments?facultyId=${facultyId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const commentTableBody = document.getElementById('commentTableBody');
+                    commentTableBody.innerHTML = '';
+                    data.forEach(comment => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${comment.username}</td>
+                            <td>${comment.comment}</td>
+                            <td>${comment.created_at}</td>
+                        `;
+                        commentTableBody.appendChild(row);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching faculty comments:', error);
+                    // Handle error if needed
+                });
+        };
+        updateComments();
+
+        // Update comments every 0.1 seconds
+        setInterval(updateComments, 100);
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+    // Other code...
+
+    const submitReplyBtn = document.querySelector('.submitreply');
+    submitReplyBtn.addEventListener('click', submitreply);
+});
+    function submitreply() {
+    // Get username and professor name from URL
+    const urlParams = new URLSearchParams(window.location.search);
+        const facultyId = urlParams.get('facultyId');
+
+    // Get comment from the form
+    const comment = document.getElementById('comment').value;
+    const username = document.getElementById('to').value;
+
+
+    // Create an object with the comment data
+    const commentData = {
+        username: username,
+        reply: comment,
+        facultyId:facultyId
+    };
+
+    // Send the comment data to the backend
+    fetch('http://localhost:5003/store-faculty-reply', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(commentData)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log(data); // Log success message
+        // Optionally, display a success message to the user
+    })
+    .catch(error => {
+        console.error('Error storing comment:', error);
+        // Optionally, display an error message to the user
+    });
+}
+
+</script>
+</body>
+</html>

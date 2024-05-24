@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Dashboard</title>
+    <link rel="stylesheet" href="css/facultyinsert.css">
+    <link href="https://cdn.jsdelivr.net/boxicons/2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+    
+    <div class="menu-bar">
+        <ul>
+            <li><a href="homepage.html">HOME</a></li>
+            <li><div id="usernameDisplay"></div></li>
+            
+            <li class="dropdown">
+                
+                <a href="#" class="user-icon"><img src="images/Professor-icon.png" alt="User Icon"></a>
+                  <div class="dropdown-content">
+                    <div id="usernameDisplay"></div>
+                    <button class="logout-btn" onclick="logout()">Logout</button>
+                   
+                  </div>
+              </li>
+            
+        </ul>
+    </div>
+    
+    <div class="container">
+        <form id="myForm">
+            <label for="startTime">Start Time</label>
+            <label for="endTime">End Time</label><br><br>
+            
+            <!-- Input fields and submit buttons for each day -->
+            <label for="monday">MONDAY</label>
+            <input type="time" id="mondayStart" name="mondayStart" placeholder="Start Time">
+            <input type="time" id="mondayEnd" name="mondayEnd" placeholder="End Time">
+            <button class="submitDay" type="button" onclick="submitDay('monday')">Submit</button><br><br>
+    
+            <label for="tuesday">TUESDAY</label>
+            <input type="time" id="tuesdayStart" name="tuesdayStart" placeholder="Start Time">
+            <input type="time" id="tuesdayEnd" name="tuesdayEnd" placeholder="End Time">
+            <button class="submitDay" type="button" onclick="submitDay('tuesday')">Submit</button><br><br>
+    
+            <label for="wednesday">WEDNESDAY</label>
+            <input type="time" id="wednesdayStart" name="wednesdayStart" placeholder="Start Time">
+            <input type="time" id="wednesdayEnd" name="wednesdayEnd" placeholder="End Time">
+            <button class="submitDay" type="button" onclick="submitDay('wednesday')">Submit</button><br><br>
+    
+            <label for="thursday">THURSDAY</label>
+            <input type="time" id="thursdayStart" name="thursdayStart" placeholder="Start Time">
+            <input type="time" id="thursdayEnd" name="thursdayEnd" placeholder="End Time">
+            <button class="submitDay" type="button" onclick="submitDay('thursday')">Submit</button><br><br>
+    
+            <label for="friday">FRIDAY</label>
+            <input type="time" id="fridayStart" name="fridayStart" placeholder="Start Time">
+            <input type="time" id="fridayEnd" name="fridayEnd" placeholder="End Time">
+            <button class="submitDay" type="button" onclick="submitDay('friday')">Submit</button><br><br>
+    
+            <label for="saturday">SATURDAY</label>
+            <input type="time" id="saturdayStart" name="saturdayStart" placeholder="Start Time">
+            <input type="time" id="saturdayEnd" name="saturdayEnd" placeholder="End Time">
+            <button class="submitDay" type="button" onclick="submitDay('saturday')">Submit</button><br><br>
+    
+            <!-- Additional comment box -->
+            <label for="comment">Comment</label>
+            <textarea id="comment" name="comment" rows="4" cols="50"></textarea>
+            <button class="submitComment" type="button" onclick="submitComment()">Submit Comment</button><br><br>
+    
+            <!-- Hidden field to store the username -->
+            <input type="hidden" id="hiddenFacultyId" name="facultyId" value="2">
+        </form>
+    </div>
+
+   <!-- Ensure you retrieve the faculty ID from the query parameter -->
+   <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const facultyId = urlParams.get('facultyId'); // Change from username to facultyId
+
+        // Display the faculty ID in the top menu bar or wherever needed
+        const usernameDisplay = document.getElementById('usernameDisplay');
+        usernameDisplay.textContent = `WELCOME, Faculty ID: ${facultyId}!`;
+
+        // Set the faculty ID value in the hidden field
+        document.getElementById('hiddenFacultyId').value = facultyId;
+    });
+
+    // Function to submit start and end time for a specific day
+    function submitDay(day) {
+        const facultyId = document.getElementById('hiddenFacultyId').value; // Get faculty ID
+        const startTime = document.getElementById(`${day}Start`).value;
+        const endTime = document.getElementById(`${day}End`).value;
+
+        // Send data to backend server
+        fetch('http://localhost:5003/update-timings', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ facultyId, dayOfWeek: day, startTime, endTime })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then(data => {
+            console.log(`${day} data sent successfully:`, data);
+            // Handle response if needed
+        })
+        .catch(error => {
+            console.error(`Error sending ${day} data:`, error);
+            // Handle error if needed
+        });
+    }
+
+    // Function to submit comment
+    function submitComment() {
+        const facultyId = document.getElementById('hiddenFacultyId').value; // Get faculty ID
+        const comment = document.getElementById('comment').value;
+
+        // Send comment data to backend server
+        fetch('http://localhost:5003/submit-comment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ facultyId, comment })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then(data => {
+            console.log('Comment submitted successfully:', data);
+            // Handle response if needed
+        })
+        .catch(error => {
+            console.error('Error submitting comment:', error);
+            // Handle error if needed
+        });
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,168 @@
+body {
+  min-height: 97vh;
+  background: rgb(253, 219, 218);
+  background: linear-gradient(
+    0deg,
+    rgb(0, 0, 0) 20%,
+    rgb(173, 40, 40) 58%,
+    rgb(23, 36, 136) 98%
+  );
+}
+.menu-bar {
+  display: flex;
+  top: 0px;
+  left: 0%;
+  background-color: rgba(10, 9, 7, 0);
+  width: 100%;
+  padding: 1rem;
+  justify-content: flex-end;
+}
+.menu-bar ul {
+  margin: 0;
+  padding: 1vh 0;
+  text-align: center;
+}
+
+.menu-bar ul li {
+  display: inline-block;
+  margin-right: 1vw;
+}
+
+.menu-bar ul li:last-child {
+  margin-right: 3vw;
+}
+
+.menu-bar ul li a {
+  display: block;
+  color: #fffcfc;
+  text-decoration: none;
+  font-size: 2vh;
+  position: relative;
+  padding: 1vh 1vw;
+}
+.menu-bar ul li a:hover:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 70%;
+  height: 2px;
+  background-color: #b14e4e;
+  border-radius: 2px;
+  transform: translateX(-50%);
+}
+
+.dropdown {
+  position: relative;
+}
+
+.phone {
+  color: #fffcff;
+  font-size: 2.5vh;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #33333300;
+  min-width: 160px;
+  z-index: 1;
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 1vh 1vw;
+  color: #fff;
+  text-decoration: none;
+}
+
+.dropdown-content a:hover {
+
+  color: #fff;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+nav{
+  display: flex;
+  justify-content: space-between;
+}
+.cont{
+  margin-bottom:30px;
+  font-size: 20px;
+}
+.cont1{
+  margin-bottom:30px;
+  font-size: 20px;
+  
+  width: 200px;
+}
+
+.cont1 {
+  background-color: #0e49de; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+ 
+  cursor: pointer;
+  
+  transition: background-color 0.3s ease; /* Add transition for smoother hover effect */
+}
+
+/* Add hover effect */
+.cont1:hover {
+  background-color: #45a049; /* Darker green */
+}
+
+.title1
+{
+  color: white;
+  padding-top: 10px;
+  width: 70%;
+  font-size: 52px;
+}
+
+.container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapper {
+  position: relative;
+  width: 400px;
+  height: 100%;
+  border: 2px solid black;
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: height 0.2s;
+  overflow: hidden;
+}
+
+
+.title1{
+  background: linear-gradient(to right, #ff0000, #00ff00, #0000ff, #ffffff, #050500);
+  /* Change colors as needed */
+  background-size: 500% 100%;
+  /* Adjust size based on the number of colors */
+  animation: colorChange 10s linear infinite;
+  /* Change the duration (5s) and timing function as needed */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: bold;
+  text-align: center;
+  margin-left: 0px;
+}

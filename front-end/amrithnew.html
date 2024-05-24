@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Dashboard</title>
+    <link rel="stylesheet" href="css/facultyinsert.css">
+    <link href="https://cdn.jsdelivr.net/boxicons/2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+    
+    <div class="menu-bar">
+        <ul>
+            <li><a href="homepage.html">HOME</a></li>
+            <li><div id="usernameDisplay"></div></li>
+            
+            <li class="dropdown">
+                
+                <a href="#" class="user-icon"><img src="images/Professor-icon.png" alt="User Icon"></a>
+                  <div class="dropdown-content">
+                    <div id="usernameDisplay"></div>
+                    <button class="logout-btn" onclick="logout()">Logout</button>
+                   
+                  </div>
+              </li>
+            
+        </ul>
+    </div>
+    
+    <div class="container">
+        <form id="myForm">
+            <label for="startTime">Start Time</label>
+            <label for="endTime">End Time</label><br><br>
+            
+            <label for="option0">MONDAY</label>
+            <input type="time" id="option0" name="option0" placeholder="Start Time" >
+            <input type="time" id="option0end" name="option0end" placeholder="End Time" ><br><br>
+    
+            <label for="option1">TUESDAY</label>
+            <input type="time" id="option1" name="option1" placeholder="Start Time" >
+            <input type="time" id="option1end" name="option1end" placeholder="End Time" ><br><br>
+    
+            <label for="option2">WEDNESDAY</label>
+            <input type="time" id="option2" name="option2" placeholder="Start Time" >
+            <input type="time" id="option2end" name="option2end" placeholder="End Time" ><br><br>
+    
+            <label for="option3">THURSDAY</label>
+            <input type="time" id="option3" name="option3" placeholder="Start Time" >
+            <input type="time" id="option3end" name="option3end" placeholder="End Time" ><br><br>
+    
+            <label for="option4">FRIDAY</label>
+            <input type="time" id="option4" name="option4" placeholder="Start Time" >
+            <input type="time" id="option4end" name="option4end" placeholder="End Time" ><br><br>
+    
+            <label for="option5">SATURDAY</label>
+            <input type="time" id="option5" name="option5" placeholder="Start Time" >
+            <input type="time" id="option5end" name="option5end" placeholder="End Time" ><br><br>
+    
+            <button class="submitupdate" type="submit">UPDATE</button>
+        </form>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const username = urlParams.get('username');
+
+            // Display the username in the top menu bar or wherever needed
+            const usernameDisplay = document.getElementById('usernameDisplay');
+            usernameDisplay.textContent = `WELCOME, ${username}!`;
+        });
+    
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('myForm');
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                // Get login username from URL query parameter (you need to replace this with your own method)
+                const urlParams = new URLSearchParams(window.location.search);
+                const username = urlParams.get('username');
+
+                // Prepare data to send
+                const formData = new FormData(form);
+                formData.append('username', username);
+
+                // Send data to backend server
+                fetch('https://your-backend-server-url.com/submit-form', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    console.log('Form data sent successfully:', data);
+                    // Handle response if needed
+                })
+                .catch(error => {
+                    console.error('Error sending form data:', error);
+                    // Handle error if needed
+                });
+            });
+        });
+    </script>
+        </body>
+</html>

@@ -1,0 +1,204 @@
+body {
+  background: rgb(16, 28, 31);
+  background-size: 400% 400%;
+ 
+  height: 100vh;
+  overflow: hidden;
+}
+
+.menu-bar {
+  position: fixed;
+  top: 0;
+  left: 30%;
+  /* Push to the top right corner */
+  width: auto;
+  /* Adjust width as needed */
+  background-color: rgba(10, 9, 7, 0);
+  /* Adjust alpha value as needed */
+  padding: 1vh 1vw;
+  /* Adjust padding as needed */
+}
+
+.menu-bar ul li a:hover {
+  background-color: #2f92ad;
+  transform: scale(1.1);
+  /* Apply zoom effect on hover */
+}
+
+.menu-bar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: rgba(10, 9, 7, 0);
+  /* Adjust alpha value as needed */
+  padding: 1vh 0;
+  /* Adjust padding as needed */
+}
+
+.menu-bar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 1vh 0;
+  /* Adjust padding using relative units */
+  text-align: center;
+}
+
+.menu-bar ul li {
+  display: inline-block;
+  margin-right: 0vw;
+  /* Adjust margin using relative units */
+}
+
+.menu-bar ul li:last-child {
+  margin-right: 0;
+}
+
+.menu-bar ul li a {
+  display: block;
+  color: #fffcfc;
+  text-decoration: none;
+  padding: 2vh 3vw;
+  /* Adjust padding using relative units */
+  font-size: 2.5vh;
+  /* Adjust font size using relative units */
+}
+
+.menu-bar ul li a:hover {
+  background-color: #08080800;
+  border-radius: 100%;
+  transform: scale(1.25);
+  /* Increase the scale factor for a larger zoom effect */
+}
+
+.dropdown {
+  position: relative;
+}
+
+.phone {
+  color: #fffcff;
+  font-size: 2.5vh;
+  /* Adjust font size using relative units */
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  /* Position the dropdown above the menu bar */
+  left: 0;
+  background-color: #33333300;
+  min-width: 160px;
+  z-index: 1;
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 0vh 1vw;
+  /* Adjust padding using relative units */
+  color: #fff;
+  text-decoration: none;
+}
+
+.dropdown-content a:hover {
+  background-color: #555;
+  color: #fff;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+@keyframes colorChange {
+  0% {
+      background-position: 0 0;
+  }
+
+  100% {
+      background-position: 100% 0;
+  }
+}
+
+h2 {
+  
+  background: linear-gradient(to right, #ff0000, #00ff00, #0000ff, #ffffff, #050500);
+  /* Change colors as needed */
+  background-size: 500% 100%;
+  /* Adjust size based on the number of colors */
+  animation: colorChange 10s linear infinite;
+  /* Change the duration (5s) and timing function as needed */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+h2 {
+  text-align: left;
+  margin-left: 2%;
+  text-emphasis: none;
+    font-size: 30px;
+    font-family: Algerian, sans-serif;
+    /* Apply Algerian font style */
+    font-weight: bold;
+    /* Make it bold */
+    
+    
+ 
+}
+
+
+
+button {
+width: 50%; /* Adjust the width as needed */
+padding: 15px; /* Increased padding */
+font-size: 20px; /* Increased font size */
+background-color: #007bff;
+color: #fff;
+border: none;
+border-radius: 8px;
+cursor: pointer;
+transition: background-color 0.3s ease;
+margin: 30% auto 0; /* Center vertically with 30% margin from the top and horizontally with auto margins */
+display: block; /* Ensure the button takes up the full width of its container */
+}
+
+button:hover {
+background-color: #00b336;
+}
+.formbox {
+  width: 300px;
+  /* Adjust width as needed */
+  margin-top: 15%;
+  margin-left: 40%; /* Center the form horizontally */
+}
+
+.subject,
+.section {
+  margin-bottom: 50px; /* Add space between form elements */
+}
+
+label {
+  display: block; /* Display labels as block elements */
+  margin-bottom: 5px; /* Add space below labels */
+  color: #fff; /* Set label text color */
+}
+
+select {
+  width: 100%; /* Make dropdown width full-width of its container */
+  padding: 10px; /* Add padding to dropdown */
+  border-radius: 5px; /* Add rounded corners to dropdown */
+  border: 1px solid #ccc; /* Add border to dropdown */
+  box-sizing: border-box; /* Ensure padding and border are included in the width */
+  background-color: #fff; /* Set background color of dropdown */
+  color: #000; /* Set text color of dropdown */
+}
+
+/* Style the option elements */
+option {
+  padding: 5px; /* Add padding to option elements */
+  background-color: #fff; /* Set background color of options */
+  color: #000; /* Set text color of options */
+}
+
+/* Style the hover effect of options */
+option:hover {
+  background-color: #f0f0f0; /* Change background color on hover */
+}

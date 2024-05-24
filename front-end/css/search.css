@@ -1,0 +1,104 @@
+@font-face {
+  font-family: 'Aaa';
+  src: url('/front-end/fonts/Dune_Rise.ttf') format('truetype');
+}
+body {
+  min-height: 99vh;
+  background: rgb(16, 28, 31);
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.content {
+  display: flex;
+  margin-top: 50px;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+
+.form-container {
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.263);
+  padding: 20px;
+  border-radius: 10px;
+  width: 30%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  font-weight: bold;
+}
+
+input[type="submit"] {
+  display: block;
+  width: 20%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+input[type="text"] {
+  width: 199px; /* Adjust width as needed */
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+input[list] {
+  width: 220px; /* Adjust width as needed */
+}
+
+/* Center the icon vertically and horizontally */
+button[type="submit"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; /* Adjust width as needed */
+  height: 40px; /* Adjust height as needed */
+  border: none;
+  font-size: 25px;
+  background-color: transparent; /* Transparent background */
+  cursor: pointer;
+  transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Increase button width and change color on hover */
+button[type="submit"]:hover {
+  color: #007bff; /* Change color on hover */
+}
+
+.heading {
+  color: #ffffff;
+  font-family: 'Aaa';
+  font-size: 80px;
+  font-weight: bolder;
+  animation: colorChange 3s infinite alternate; /* Adjust animation duration and timing as needed */
+}
+
+@keyframes colorChange {
+  0% {
+      color: #ffffff; /* Initial color */
+  }
+  50% {
+      color: #101c1f /* Final color */
+  }
+  100%{
+      color: #ffffff;
+  }
+}

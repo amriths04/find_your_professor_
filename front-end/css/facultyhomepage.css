@@ -1,0 +1,414 @@
+/* facultyhomepage.css */
+
+/* Reset default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/* Body styles */
+body {
+  font-family: Arial, sans-serif;
+  background: rgb(16, 28, 31);
+  color: #fff; /* Default text color */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Transition for smooth color change */
+  
+}
+
+@font-face {
+  font-family: 'A1';
+  src: url('/front-end/fonts/Dune_Rise.ttf') format('truetype');
+}
+
+/* Sidebar styles */
+.sidebar {
+  width: 60px;
+  height: 100%;
+  background-color:  #000000;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  font-size: 20px;
+  padding-top: 100px; /* Adjusted padding top */
+  transition: background-color 0.3s ease; /* Transition for smooth color change */
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar li {
+  padding: 12px 11px; /* Adjusted padding */
+  line-height: 1.5; /* Center icons vertically */
+}
+
+.sidebar a {
+  color: #ffffff;
+  text-decoration: none;
+  display: block;
+  text-align: center; /* Center icons horizontally */
+  background-color: transparent; /* Remove default background color */
+}
+
+/* Blue background for icons inside the sidebar */
+.sidebar a i {
+  border-radius: 50%; /* Make icons round */
+  padding: 8px; /* Adjust padding for spacing */
+}
+
+/* Round and translucent hover effect */
+.sidebar a:hover {
+  background-color: rgba(85, 85, 85, 0.7); /* Adjust the transparency as needed */
+  border-radius: 50%; /* Make it round */
+}
+.sidebar li {
+  position: relative; /* Required for positioning the popup */
+}
+
+.sidebar li:hover::after {
+  content: attr(data-label); /* Text for the popup label */
+  position: relative; /* Position the popup relative to the li */
+  top: -30px; /* Adjust the vertical position of the popup */
+  margin-left: 50px;/* Adjust the horizontal position of the popup */
+  background-color: #ffffff; /* White background color of the popup */
+  color: #000000; /* Black text color of the popup */
+  padding: 5px 8px; /* Padding around the text */
+  border-radius: 10px; /* Rounded corners for the popup */
+  transform: translateX(-50%); /* Center the popup horizontally */
+  font-size: 14px; /* Adjust the font size of the popup text */
+
+}
+
+.logout-btn {
+  display: block;
+  padding: 10px;
+  background-color: #1b0a0a;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  position: absolute; /* Positioned absolute */
+  bottom: 20px; /* Positioned at the bottom */
+  left: 0;
+  width: 100%; /* Full width */
+}
+
+.logout-btn:hover {
+  background-color: #db0f0f;
+}
+
+/* Main content styles */
+.content {
+  margin-left: 60px; /* Adjusted margin left */
+  padding: 20px;
+}
+
+header {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+section {
+  margin-bottom: 40px;
+}
+
+footer {
+  margin-top: 50px;
+  margin-left: 100px;
+  text-align: center;
+  color: #fffdfd;
+}
+
+.professor-icon {
+  text-align: center;
+  margin-top: 240px; /* Adjust the margin to position the icon */
+}
+
+.professor-icon i {
+  font-size: 24px; /* Adjust the icon size as needed */
+}
+
+.welcome-text {
+  font-family: 'A1';
+  margin-left: 60%;
+  font-size: 28px; /* Adjust font size as needed */
+  color: #ffffff; /* Text color */
+  position: absolute; /* Position the text absolutely */
+  top: 20px; /* Distance from the top */
+  left: 100px; /* Distance from the left */
+}
+
+/* Professor info styles */
+.professor-info {
+  width: calc(20% - 10px);
+  margin-left: 200px;
+  margin-top: 150px; /* Set width to half of the container minus the gap */
+}
+
+/* Style for each detail box */
+.name,
+.email,
+.dept,
+.cabin,
+.block {
+  margin-bottom: 20px; /* Margin between each box */
+  background-color: #f8f8f83f; /* Background color for each detail box */
+  padding: 10px; /* Reduced padding inside each box */
+  border-radius: 10px;
+  border-color: yellow;
+  border :2px; /* Rounded edges */
+}
+
+/* Heading styles */
+.name h3,
+.email h3,
+.dept h3,
+.cabin h3,
+.block h3 {
+  color: #0f0e0e;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+/* Paragraph styles */
+.name p,
+.email p,
+.dept p,
+.cabin p,
+.block p {
+  font-size: 16px;
+  color: #fffdfd;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Nice font */
+}
+/* Add this to your CSS file (facultyhomepage.css) */
+
+.notificationTab {
+  display: none;
+  position: absolute;
+  background-color: #59d4d8;
+  width: 300px;
+  height: 400px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  z-index: 1;
+  padding: 20px;
+  color: #fff;
+}
+
+.notificationTab .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.notificationTab p {
+  margin-bottom: 0;
+}
+
+
+
+/* Toggle switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Toggle switch container */
+.toggle-container {
+  margin-bottom: 20px;
+  color: rgb(244, 244, 244);
+  font-size: 20px;
+}
+
+#openModalBtn {
+  display: block;
+  width: 200px; /* Adjust width as needed */
+  height: 50px; /* Adjust height as needed */
+  border: none;
+  border-radius: 25px; /* Half of height to make it round */
+  background-color: #007bff; /* Button color */
+  color: white;
+  font-size: 20px; /* Adjust font size as needed */
+  text-align: center;
+  line-height: 50px; /* Center text vertically */
+  cursor: pointer;
+  margin: 0 auto;
+  margin-top:5px;
+  margin-left: 320px; /* Center button horizontally */
+   /* Add space from top */
+  outline: none; /* Remove outline */
+}
+#updateForm button[type="submit"] {
+  display: block;
+  width: 200px; /* Adjust width as needed */
+  height: 50px; /* Adjust height as needed */
+  border: none;
+  border-radius: 25px; /* Half of height to make it round */
+  background-color: #007bff; /* Button color */
+  color: white;
+  font-size: 20px; /* Adjust font size as needed */
+  text-align: center;
+  line-height: 50px; /* Center text vertically */
+  cursor: pointer;
+  margin: 0 auto;
+  margin-top: 20px; /* Add space from top */
+  outline: none; /* Remove outline */
+}
+
+/* Hover effect */
+#updateForm button[type="submit"]:hover {
+  background-color: #0056b3; /* Darker color on hover */
+}
+
+.calendar-popup {
+  position: fixed;
+  width:140px;
+  top: 83%;
+  left: 79%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  color: black;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 10px; /* Reduced padding */
+  border-radius: 5px;
+  z-index: 9999;
+  font-size: 12px; /* Reduced font size */
+}
+
+.calendar-popup i {
+  font-size: 18px; /* Adjusted icon size */
+  color: #000000;
+  margin-right: 5px;
+}
+/* Hover effect */
+#openModalBtn:hover {
+  background-color: #0056b3; /* Darker color on hover */
+}
+/* Modal container */
+/* Modal container */
+.modal {
+  display: none; /* Hide modal by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%; /* Cover entire width */
+  height: 100%; /* Cover entire height */
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  backdrop-filter: blur(5px); /* Apply blur effect to the background */
+  overflow: auto;
+}
+
+/* Modal content */
+.modal-content {
+  background-color: #fefefe;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
+  max-width: 500px; /* Maximum width for large screens */
+  width: calc(100% - 40px); /* Adjust width as needed */
+}
+
+/* Close button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Adjusted image position */
+.image {
+  position: absolute;
+  top: 45%;
+  left: 1100px;
+  transform: translate(-50%, -50%);
+  z-index: 999; /* Ensure the image is above other content */
+}
+
+.image img {
+  width: 600px; /* Adjust width as needed */
+  height: 350px; /* Adjust height as needed */
+  border-radius: 20%; /* Make the image round */
+}
+.image {
+ 
+  transform: translate(-50%, -50%);
+  z-index: 9; /* Lower z-index to position it below the modal */
+}
+
+input[type="text" i],[type="email"] {
+  padding-block: 1px;
+  width: 400px;
+  padding-inline: 2px;
+}

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Details</title>
+    <style>
+        body {
+            min-height: 99vh;
+            background: rgb(16, 28, 31);
+  overflow: hidden;
+        }
+
+        @font-face {
+            font-family: 'A1';
+            src: url('/front-end/fonts/Dune_Rise.ttf') format('truetype');
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 80px;
+            font-size: 36px;
+            font-family: 'YourFontName', sans-serif;
+        }
+
+        table {
+            width: 80%;
+            margin: 50px auto 20px;
+            border-collapse: collapse;
+            border: 2px solid #333;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #333;
+        }
+
+        td {
+            padding: 10px;
+            border: 1px solid #333;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #e9e9e9;
+        }
+        tr:nth-child(even){
+            background-color:#e9e9e9;
+        }
+
+       
+
+        .status-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .heading{
+            position: relative;
+            display: flex;
+            color: #e9e9e9;
+            align-items: center;
+            top:  40px;
+            justify-content: center;
+
+        }
+        .status-button.true {
+            background-color: green;
+        }
+
+        .status-button.false {
+            background-color: red;
+        }
+        .message {
+      width: 50%;
+      border-color: #e9e9e9;
+     
+      font-size: 18px;
+      color: #e9e9e9; /* Adjust the width as needed */
+      margin: 0 auto; /* Center the element horizontally */
+      text-align: center; /* Center the text within the element */
+    }
+    #comment {
+      width: 100%; /* Make the textarea width 100% */
+      height: 150px; /* Adjust the height as needed */
+      resize: vertical; /* Allow vertical resizing */
+    }
+    .submitComment {
+      margin-top: 10px; /* Add some space between the textarea and the button */
+    }
+    </style>
+</head>
+
+<body>
+    <div class="heading">
+    <h1  >Faculty Time</h1>
+</div>
+
+    <table id="facultySchedule">
+        <thead>
+            <tr>
+                <th>DAY</th>
+                <th>START TIME</th>
+                <th>END TIME</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Faculty details will be dynamically inserted here -->
+        </tbody>
+    </table>
+
+   
+
+   
+
+<div class="message">
+    <h2>Comment:</h2>
+        <div id="commentDisplay"></div>
+    
+   
+</div>
+
+
+
+<script>
+    function fetchFacultySchedule() {
+        // Get the facultyId and facultyName from the URL
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        //const facultyId = urlParams.get('facultyId');
+        const facultyName = urlParams.get('facultyName');
+        //console.log(facultyName);
+        fetch(`http://localhost:5003/get-faculty-id?facultyName=${encodeURIComponent(facultyName)}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const facultyId = data.facultyId;
+                    //console.log("FacultyId",facultyId);
+                    // Fetch faculty schedule using the retrieved facultyId
+                    fetch(`http://localhost:5003/get-faculty-schedule?facultyId=${facultyId}`)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.json();
+                        })
+                        .then(scheduleData => {
+                            // Process and display schedule data
+                            const tbody = document.querySelector("#facultySchedule tbody");
+                            tbody.innerHTML = ""; // Clear previous data
+
+                            scheduleData.forEach(schedule => {
+                                const row = document.createElement("tr");
+                                row.innerHTML = `
+                                    <td>${schedule.day_of_week}</td>
+                                    <td>${schedule.start_time}</td>
+                                    <td>${schedule.end_time}</td>
+                                `;
+                                tbody.appendChild(row);
+                            });
+                        })
+                        .catch(error => {
+                            console.error('Error fetching faculty schedule:', error);
+                        });
+                })
+                .catch(error => {
+                    console.error('Error fetching facultyId:', error);
+                });
+            }
+                function fetchFacultyComment() {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const facultyName = urlParams.get('facultyName');
+            fetch(`http://localhost:5003/get-faculty-id?facultyName=${encodeURIComponent(facultyName)}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const facultyId = data.facultyId;
+                    //console.log("FacultyId",facultyId);
+                    //console.log(facultyId);
+            fetch(`http://localhost:5003/get-comment?facultyId=${facultyId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const comment = data.comment;
+                    console.log(data.comment);
+                    document.getElementById('commentDisplay').textContent = comment;
+                })
+            })
+                .catch(error => {
+                    console.error('Error fetching comment:', error);
+                });
+        }
+                
+
+        // Construct the URL for the ftime.html page with facultyId and facultyName as query parameters
+        //const ftimeUrl = `ftime.html?facultyId=${facultyId}&facultyName=${encodeURIComponent(facultyName)}`;
+
+        // Redirect to the ftime.html page
+        //window.location.href = ftimeUrl;
+            fetchFacultySchedule();
+            fetchFacultyComment();
+            setInterval(fetchFacultySchedule,100);
+            setInterval(fetchFacultyComment,100);
+
+</script>
+</body>
+</html>

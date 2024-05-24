@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard</title>
+  <link rel="stylesheet" href="css/messages.css">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="welcome-text" id="welcomeText"></div>
+  <nav class="sidebar">
+    <ul>
+      <li><a href="studenthomepage.html"><i class="fas fa-home"></i></a></li>
+      
+      <li><a href="#" class="notification-btn"><i class="fas fa-bell"></i></a></li>
+      <li><a href="messages.html"><i class="fas fa-envelope"></i></a></li>
+      <li><a href="ssearch.html"><i class="fas fa-search"></i></a></li>
+      <li><a href="studentaboutus.html"><i class="fas fa-info-circle"></i></a></li>
+    </ul>
+    <div class="professor-icon">
+        <i class="fas fa-user-tie"></i>
+    </div>
+    
+    <button class="logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i></button>
+
+  </nav>
+  <div class="messagelog">
+  <table>
+    <thead>
+        <tr>
+            <th>Faculty Name</th>
+            <th>Comment</th>
+            <th>Received At</th>
+        </tr>
+    </thead>
+    <tbody id="commentTableBody">
+        <!-- Faculty comments will be dynamically inserted here -->
+    </tbody>
+</table>
+</div>
+
+<!-- Notification Tab -->
+<div id="notificationTab" class="notificationTab">
+    <span class="close">&times;</span>
+</div>
+
+<script>
+    const logoutBtn = document.querySelector('.logout-btn');
+    const notificationBtn = document.querySelector('.notification-btn');
+    const notificationTab = document.querySelector('.notificationTab');
+    const closeBtn = document.querySelector('.close');
+
+    // Get the username from the URL query parameters
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const username = urlParams.get('username');
+
+    // Function to fetch and display faculty comments
+    const updateComments = () => {
+        fetch(`http://localhost:5003/faculty-comments?username=${username}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const commentTableBody = document.getElementById('commentTableBody');
+                commentTableBody.innerHTML = '';
+                data.forEach(comment => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${comment.faculty_name}</td>
+                        <td>${comment.reply}</td>
+                        <td>${comment.create_at}</td>
+                    `;
+                    commentTableBody.appendChild(row);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching faculty comments:', error);
+                // Handle error if needed
+            });
+    };
+
+    // Call updateComments function initially and then every 0.1 seconds
+    updateComments();
+    setInterval(updateComments, 100);
+
+    // Event listeners for notification and logout buttons
+    notificationBtn.addEventListener('click', (event) => {
+        event.stopPropagation();
+        const rect = notificationBtn.getBoundingClientRect();
+        notificationTab.style.display = 'block';
+        notificationTab.style.top = `${rect.bottom}px`;
+        notificationTab.style.left = `${rect.left}px`;
+    });
+
+    window.addEventListener('click', (event) => {
+        if (!event.target.closest('.notificationTab') && event.target !== notificationBtn) {
+            notificationTab.style.display = 'none';
+        }
+    });
+
+    closeBtn.addEventListener('click', () => {
+        notificationTab.style.display = 'none';
+    });
+
+    logoutBtn.addEventListener('click', () => {
+        window.location.href = 'facultylogin.html';
+    });
+</script>
+</body>
+</html>

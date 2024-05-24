@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    
+<link rel="stylesheet" href="css/search.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Professor Details Form</title>
+    
+</head>
+
+<body>
+    <div class="content">
+        <div class="heading">
+            <h1>FYP</h1>
+        </div>
+        <div class="form-container">
+            <h2 style="margin-bottom: 20px; color: aliceblue;">SELECT PROFESSOR</h2>
+            <!-- Form to select professor name -->
+        <form id="professorForm" class="demo1">
+            <input list="professor_names" id="professor_name" name="professor_name" placeholder="Type or select professor name" class="demo1">
+        <datalist id="professor_names" >
+                <!-- Add options for professor names here -->
+                <option value="Smitha Pai">DR. SMITHA N.PAI</option>
+<option value="Manohara Pai M.M">DR. MANOHARA PAI M.M</option>
+<option value="Balachandra">DR. BALACHANDRA</option>
+<option value="Preetham Kumar">DR. PREETHAM KUMAR</option>
+<option value="Manjula Shenoy K.">DR. MANJULA SHENOY K.</option>
+<option value="Sanjay Singh">DR. SANJAY SINGH</option>
+<option value="Ajitha Shenoy">DR. AJITHA SHENOY</option>
+<option value="Poornalatha G">DR. POORNALATHA G</option>
+<option value="Chandrakala C.B">DR. CHANDRAKALA C.B</option>
+<option value="Santhosha Rao">DR. SANTHOSHA RAO</option>
+<option value="Raghavendra Achar">DR. RAGHAVENDRA ACHAR</option>
+<option value="Sucheta Kolekar">DR. SUCHETA KOLEKAR</option>
+<option value="Rashmi Naveen Raj">DR. RASHMI NAVEEN RAJ</option>
+<option value="K. Krishna Prakasha">DR. K. KRISHNA PRAKASHA</option>
+<option value="Sumith N.">DR. SUMITH N.</option>
+<option value="Girija V. Attigeri">DR. GIRIJA V. ATTIGERI</option>
+<option value="Adesh N.D.">DR. ADESH N.D.</option>
+<option value="Santhosh Kamath">DR. SANTHOSH KAMATH</option>
+<option value="V. Sivakumar">Dr. V. SIVAKUMAR</option>
+<option value="Diana Olivia">DR. DIANA OLIVIA</option>
+<option value="Raghavendra S.">Dr. RAGHAVENDRA S.</option>
+<option value="Veena Mayya">DR. VEENA MAYYA</option>
+<option value="Manjula C. B.">DR. MANJULA C. B.</option>
+<option value="Ghanashyama Prabhu">MR. GHANASHYAMA PRABHU</option>
+<option value="Divya S.">MRS. DIVYA S.</option>
+<option value="Anuradha Rao">MRS. ANURADHA RAO</option>
+<option value="Raghavendra Ganiga">DR. RAGHAVENDRA GANIGA</option>
+<option value="Akshay K C">MR. AKSHAY K C</option>
+<option value="Mrs. Veena K M">MRS. VEENA K M</option>
+<option value="Raviraj Holla">DR. RAVIRAJ HOLLA</option>
+<option value="Sangeetha T.S.">MRS. SANGEETHA T.S.</option>
+<option value="Chetana Pujari">MS. CHETANA PUJARI</option>
+<option value="Chethan Sharma">MR. CHETHAN SHARMA</option>
+<option value="Nisha P. Shetty">DR. NISHA P. SHETTY</option>
+<option value="S.Kaliraj">DR. S.KALIRAJ</option>
+<option value="Vibha">MRS. VIBHA</option>
+<option value="Pooja S.">MRS. POOJA S.</option>
+<option value="Swathi B.P.">MS. SWATHI B.P.</option>
+<option value="Anusha Hegde">MRS.ANUSHA HEGDE</option>
+<option value="Divya Rao">Dr. DIVYA RAO</option>
+<option value="Arjun C. V">MR. ARJUN C. V</option>
+<option value="Jayashree">MRS. JAYASHREE</option>
+<option value="Sameena Begum Pathan">DR. SAMEENA BEGUM PATHAN</option>
+<option value="Ms. Ramyashree">MS. RAMYASHREE</option>
+<option value="Satyajit Mahapatra">DR.SATYAJIT MAHAPATRA</option>
+<option value="Pankaj Kumar">DR. PANKAJ KUMAR</option>
+<option value="Manoj Tolani">DR.MANOJ TOLANI</option>
+<option value="Ritesh Sharma">DR. RITESH SHARMA</option>
+<option value="Ramya D Shetty">Mrs. Ramya D Shetty</option>
+<option value="Swathi Prabhu">Mrs. Swathi Prabhu</option>
+
+                <!-- Add more options as needed -->
+            </datalist>
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+        <br>
+		<a class="forgot" href="forgot.html" id="forgotLink">Don't know Name<br>😂</a> <!-- Link to Forgot Password page -->
+
+		</div>
+    </div>
+</div>
+
+    <!-- Script to handle form submission -->
+    <script>
+		
+        // Function to handle form submission
+        document.getElementById('professorForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get selected professor name
+            const professorName = document.getElementById('professor_name').value;
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const username = urlParams.get('username');
+
+            // Redirect to display page with selected faculty name
+            window.location.href = `display.html?facultyName=${encodeURIComponent(professorName)}&username=${encodeURIComponent(username)}`;
+        });
+		document.addEventListener('DOMContentLoaded', function() {
+    // Get the username parameter from the URL
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const username = urlParams.get('username');
+
+    // Get the "Don't know Name" link
+    const forgotLink = document.getElementById('forgotLink');
+
+    // Update the href attribute of the link to include the username parameter
+    forgotLink.href = `forgot.html?username=${encodeURIComponent(username)}`;
+});
+
+    </script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body>
+
+</html>

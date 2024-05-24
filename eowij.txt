@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Login/Register</title>
+  <link rel="stylesheet" href="css/stylesAA.css">
+</head>
+
+<body>
+  <nav>
+    <h1 class="title1">LOCATE YOUR PROFESSOR</h1>
+    <div class="menu-bar">
+
+      <ul>
+        <li><a href="homepage.html">HOME</a></li>
+        <li><a href="aboutus.html">ABOUT US</a></li>
+        <li><a href="facultylogin.html">FACULTY LOGIN</a></li>
+        
+        <li class="dropdown">
+          <a href="#" class="contact-link">GET IN TOUCH</a>
+          <div class="dropdown-content">
+            <div class="dropdown-content">
+              <a href="mailto:amrithshet@icloud.com">Email: amrithshet@icloud.com</a>
+              <p class="phone">Phone: +91 6363531509</p>
+              <a href="https://maps.app.goo.gl/hfHu8WZr4VwQta9r6">Address: Mangaluru, Karnataka
+                575002</a>
+            </div>
+
+        </li>
+        <li><a href="studentlogin.html">STUDENT SIGN IN</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="wrapper">
+      <div>
+        <h2 align="center">FACULTY REGISTER</h2>
+        <form id="registerForm" onsubmit="handleSubmit(event)">
+          <label for="registerFID" class="cont">Faculty ID:</label>
+          <input type="text" id="registerFID" name="fid" required class="cont"><br>
+          <label for="registerUsername" class="cont">Username:</label>
+          <input type="text" id="registerUsername" name="username" required  class="cont"><br>
+          <label for="registerPassword"  class="cont">Password:</label>
+          <input type="password" id="registerPassword" name="password" required  class="cont"><br>
+          <button type="submit"  class="cont1">Register</button>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function handleSubmit(event) {
+      event.preventDefault(); // Prevent the default form submission
+      console.log('req sent');
+      // Get form data
+      const formData = new FormData(event.target);
+      const facultyId = formData.get('fid');
+      const username = formData.get('username');
+      const password = formData.get('password');
+      console.log('U P', username, password)
+      // Example: Send form data to a server
+      fetch('http://localhost:5003/fregister', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ facultyId, username, password })
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Form submission successful:', data);
+        if (data.registered) {
+          alert('Faculty is registered');
+        } else {
+          alert('Faculty is not registered');
+        }
+        // Optionally, display a success message or redirect to another page
+      })
+      .catch(error => {
+        console.error('Error submitting form:', error);
+        // Optionally, display an error message to the user
+      });
+    }
+  </script>
+
+</body>
+
+</html>

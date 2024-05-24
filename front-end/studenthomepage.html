@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="css/studenthomepage.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="welcome-text" id="welcomeText"></div>
+    <nav class="sidebar">
+        <ul>
+            <li data-label="HOME"><a href="#"><i class="fas fa-home"></i></a></li>
+            <li data-label="ALERT"><a href="#" class="notification-btn"><i class="fas fa-bell"></i></a></li>
+            <li data-label="SEARCH"><a href="search.html" id="searchLink"><i class="fas fa-search"></i></a></li>
+            <li data-label="INBOX"><a id="messagesLink" href="#"><i class="fas fa-envelope"></i></a></li>
+            
+        </ul>
+        
+        <div class="professor-icon">
+            <i class="fas fa-user-tie"></i>
+        </div>
+        <button class="logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i></button>
+    </nav>
+    <div class="all" style="display: flex;">
+        <div class="image">
+            <img src="images/logo3.png">
+        </div>
+        <div class="student-info">
+            <div class="name">
+                <h3>Name</h3>
+                <p id="studentName"></p>
+            </div>
+            <div class="email">
+                <h3>Email</h3>
+                <p id="studentEmail"></p>
+            </div>
+            <div class="dept">
+                <h3>Department</h3>
+                <p id="studentDept"></p>
+            </div>
+            <div class="sem">
+                <h3>Sem</h3>
+                <p id="studentSem"></p>
+            </div>
+            <input type="hidden" id="hiddenUsername" value="">
+        </div>
+        <button id="openModalBtn">Update Details</button>
+        <button id="extraBtn">AVAILABLE</button>
+        <div class="dropdown">
+            
+            <select id="extraDropdown" name="extraDropdown">
+                <option value="ES">ES</option>
+                <option value="CN">CN</option>
+                <option value="DBS">DBS</option>
+            </select>
+        </div>
+        <button id="extra1Btn">SEARCH</button>
+        <div id="updateModal" class="modal">
+            <div class="modal-content">
+                <!-- Form for updating student details -->
+                <form id="updateForm">
+                    <div class="name">
+                        <h3>Name</h3>
+                        <input type="text" id="studentNameInput" name="sname">
+                    </div>
+                    <div class="email">
+                        <h3>Email</h3>
+                        <input type="email" id="studentEmailInput" name="semail">
+                    </div>
+                    <div class="dept">
+                        <h3>Department</h3>
+                        <input type="text" id="studentDeptInput" name="sdept">
+                    </div>
+                    <div class="sem">
+                        <h3>Semester</h3>
+                        <input type="text" id="studentSemInput" name="ssem">
+                    </div>
+                    <!-- Button to submit form -->
+                    <button type="submit">Update Details</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 FindMyProfessor</p>
+    </footer>
+    
+    <!-- Notification Tab -->
+    <div id="notificationTab" class="notificationTab">
+        <span class="close">&times;</span>
+        <p>Notification</p>
+    </div>
+
+    <!-- JavaScript for logout and fetching student details -->
+    <script>
+        document.getElementById('extra1Btn').addEventListener('click', function() {
+    // Get the selected value from the dropdown
+    const selectedValue = document.getElementById('extraDropdown').value;
+    // Redirect to the display page with the selected value as a query parameter
+    window.location.href = `displayquery.html?subject=${selectedValue}`;
+});
+
+        document.getElementById('extraBtn').addEventListener('click', function() {
+            // Redirect to the display page
+            window.location.href = 'displaylive.html';
+        });
+       
+        const openModalBtn = document.getElementById('openModalBtn');
+        const updateModal = document.getElementById('updateModal');
+        const closeModalBtn = document.querySelector('.close');
+
+        openModalBtn.addEventListener('click', () => {
+            updateModal.style.display = 'block';
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            updateModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target === updateModal) {
+                updateModal.style.display = 'none';
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const logoutBtn = document.querySelector('.logout-btn');
+            const notificationBtn = document.querySelector('.notification-btn');
+            const notificationTab = document.querySelector('.notificationTab');
+            const closeBtn = document.querySelector('.close');
+            const searchLink = document.getElementById('searchLink');
+
+            notificationBtn.addEventListener('click', (event) => {
+                event.stopPropagation();
+                const rect = notificationBtn.getBoundingClientRect();
+                notificationTab.style.display = 'block';
+                notificationTab.style.top = `${rect.bottom}px`;
+                notificationTab.style.left = `${rect.left}px`;
+            });
+
+            window.addEventListener('click', (event) => {
+                if (!event.target.closest('.notificationTab') && event.target !== notificationBtn) {
+                    notificationTab.style.display = 'none';
+                }
+            });
+
+            closeBtn.addEventListener('click', () => {
+                notificationTab.style.display = 'none';
+            });
+
+            window.addEventListener('click', (event) => {
+                if (!event.target.closest('.notificationTab') && event.target !== notificationBtn) {
+                    notificationTab.style.display = 'none';
+                }
+            });
+
+            logoutBtn.addEventListener('click', function() {
+                window.location.href = 'studentlogin.html';
+            });
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const username = urlParams.get('username');
+            if (username) {
+                fetchStudentDetails(username);
+            } else {
+                // Handle case when username is not provided in the URL
+            }
+            searchLink.href = `search.html?username=${encodeURIComponent(username)}`;
+        });
+
+
+
+        const urlParams = new URLSearchParams(window.location.search);
+            const username = urlParams.get('username');
+
+        const messagesUrl = `messages.html?username=${username}`;
+        console.log(messagesUrl); 
+document.getElementById('messagesLink').href = messagesUrl;
+        
+        
+        
+        function fetchStudentDetails(username) {
+            fetch(`http://localhost:5003/get-student-details?student=${username}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    document.getElementById('welcomeText').textContent = `Welcome ${data.username}!`;
+                    document.getElementById('studentName').textContent = data.sname;
+                    document.getElementById('studentEmail').textContent = data.semail;
+                    document.getElementById('studentDept').textContent = data.sdept;
+                    document.getElementById('studentSem').textContent = data.ssem;
+                    document.getElementById('hiddenUsername').value = data.username;
+                })
+                .catch(error => {
+                    console.error('Error fetching student details:', error);
+                });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const updateForm = document.getElementById('updateForm');
+            updateForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const formData = new FormData(event.target);
+                const name = formData.get('sname');
+                const email = formData.get('semail');
+                const department = formData.get('sdept');
+                const sem = formData.get('ssem');
+                const username = document.getElementById('hiddenUsername').value;
+
+                fetch('http://localhost:5003/update-student-details', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, name, email, department, sem })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    console.log('Student details updated successfully:', data);
+                    window.alert('Details updated successfully!');
+                    fetchStudentDetails(username); // Update displayed details after successful update
+                })
+                .catch(error => {
+                    console.error('Error updating student details:', error);
+                });
+            });
+        });
+        
+    </script>
+</body>
+</html>

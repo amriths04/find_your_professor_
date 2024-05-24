@@ -1,0 +1,143 @@
+
+
+
+body {
+  min-height: 99vh;
+  background: rgb(16, 28, 31);
+ 
+  overflow: hidden;
+}
+
+@font-face {
+  font-family:'A1' ;
+  src: url('/front-end/fonts/Dune_Rise.ttf') format('truetype');
+}
+
+
+
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+
+}
+
+ 
+  .menu-bar {
+    font-family:'A1';
+    display: flex;
+    top: 0px;
+    left: 0%;
+    background-color: rgba(10, 9, 7, 0);
+    width: 100%;
+    padding: 1rem;
+    justify-content: flex-end;
+  }
+  .menu-bar ul {
+    margin: 0;
+    padding: 1vh 0;
+    text-align: center;
+  }
+  
+  .menu-bar ul li {
+    display: inline-block;
+    margin-right: 1vw;
+  }
+  
+  .menu-bar ul li:last-child {
+    margin-right: 3vw;
+  }
+  
+  .menu-bar ul li a {
+    display: block;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 2vh;
+    position: relative;
+    padding: 1vh 1vw;
+  }
+  .menu-bar ul li a:hover:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 70%;
+    height: 2px;
+    background-color: #b14e4e;
+    border-radius: 2px;
+    transform: translateX(-50%);
+  }
+  
+  .dropdown {
+    position: relative;
+  }
+  
+  .phone {
+    color: #fffcff;
+    font-size: 2vh;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #33333300;
+    min-width: 160px;
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    display: block;
+    padding: 1vh 1vw;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .dropdown-content a:hover {
+  
+    color: #fff;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+
+  
+  .content{
+    font-family: 'A1';
+    position:relative;
+    font-weight: 1000;
+    font-size: 129px;
+    color: #fbfbff;
+    top: 100px;
+  
+  }
+  .welcome{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    position:relative;
+    font-weight: 400;
+    font-size: 29px;
+    color: #ffffff;
+    top: 200px;
+    left: 200px;
+  
+  }
+ 
+  @keyframes flyIn {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .content {
+    animation: flyIn 1s ease-out; /* Apply the animation to the "LOCATE YOUR PROFESSOR" heading */
+  }
+

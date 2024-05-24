@@ -1,0 +1,175 @@
+
+body {
+  min-height: 99vh;
+  background: rgb(16, 28, 31);
+  
+  overflow: hidden;
+}
+@font-face {
+  font-family:'A1' ;
+  src: url('/front-end/fonts/Dune_Rise.ttf') format('truetype');
+  
+}
+  .menu-bar {
+    display: flex;
+    font-family:'A1';
+    top: 0px;
+    left: 0%;
+    background-color: rgba(10, 9, 7, 0);
+    width: 100%;
+    padding: 1rem;
+    justify-content: flex-end;
+  }
+  .menu-bar ul {
+    margin: 0;
+    padding: 1vh 0;
+    text-align: center;
+  }
+  
+  .menu-bar ul li {
+    display: inline-block;
+    margin-right: 1vw;
+    
+  }
+  
+  .menu-bar ul li:last-child {
+    margin-right: 3vw;
+  }
+  
+  .menu-bar ul li a {
+    display: block;
+    color: #fefefe;
+    text-decoration: none;
+    font-size: 2vh;
+    position: relative;
+    padding: 1vh 1vw;
+  }
+  .menu-bar ul li a:hover:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 70%;
+    height: 2px;
+    background-color: #b14e4e;
+    border-radius: 2px;
+    transform: translateX(-50%);
+  }
+  
+  .dropdown {
+    position: relative;
+  }
+  
+  .phone {
+    color: #fffcff;
+    font-size: 2.5vh;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #33333300;
+    min-width: 160px;
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    display: block;
+    padding: 1vh 1vw;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .dropdown-content a:hover {
+  
+    color: #fff;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  
+  nav{
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  
+
+  
+  
+ 
+.cont{
+  margin-bottom:30px;
+  font-size: 20px;
+}
+.cont1{
+  margin-bottom:30px;
+  font-size: 20px;
+  
+  width: 200px;
+}
+
+.cont1 {
+  background-color: #0e49de; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+ 
+  cursor: pointer;
+  
+  transition: background-color 0.3s ease; /* Add transition for smoother hover effect */
+}
+
+/* Add hover effect */
+.cont1:hover {
+  background-color: #45a049; /* Darker green */
+}
+
+.title1
+{
+  font-family: 'A1';
+  color: #ffffff;
+  padding-top: -40px;
+  width: 70%;
+  font-size: 55px;
+  
+
+}
+
+.xyz{
+  display: flex;
+}
+.container{
+  position: absolute;
+  margin-left: 900px;
+}
+
+.wrapper {
+  position: relative;
+  width: 400px;
+  height: 100%;
+  border: 2px solid rgb(255, 250, 250);
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: height 0.2s;
+  overflow: hidden;
+}
+
+.image {
+  position: absolute;
+  border-radius: 50%;
+  width: 30px; /* Adjust the width as desired */
+  height: 30px; /* Adjust the height as desired */
+}
+

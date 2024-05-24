@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Details</title>
+    <style>
+        body {
+            min-height: 99vh;
+            background: rgb(16, 28, 31);
+  overflow: hidden;
+        }
+
+        @font-face {
+            font-family: 'A1';
+            src: url('/front-end/fonts/Dune_Rise.ttf') format('truetype');
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 80px;
+            font-size: 36px;
+            font-family: 'YourFontName', sans-serif;
+        }
+
+        table {
+            width: 80%;
+            margin: 50px auto 20px;
+            border-collapse: collapse;
+            border: 2px solid #333;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #333;
+        }
+
+        td {
+            padding: 10px;
+            border: 1px solid #333;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #e9e9e9;
+        }
+        tr:nth-child(even) {
+            background-color: #e9e9e9;
+        }
+
+       
+
+        .status-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .heading{
+            position: relative;
+            display: flex;
+            color: #e9e9e9;
+            align-items: center;
+            top:  40px;
+            justify-content: center;
+
+        }
+        .status-button.true {
+            background-color: green;
+        }
+
+        .status-button.false {
+            background-color: red;
+        }
+      
+   
+    
+    </style>
+</head>
+
+<body>
+    <div class="heading">
+    <h1  ></h1>
+</div>
+
+    <table id="">
+        <thead>
+            <tr>
+                <th>NAME</th>
+                <th>SECTION</th>
+                
+            </tr>
+        </thead>
+        <tbody id="commentTableBody">
+            <!-- Faculty details will be dynamically inserted here -->
+        </tbody>
+    </table>
+
+   
+
+
+    <script>
+        // Function to retrieve query parameters from URL
+        function getQueryParams() {
+            const search = window.location.search.substring(1);
+            const params = {};
+            search.split("&").forEach(param => {
+                const [key, value] = param.split("=");
+                params[key] = decodeURIComponent(value);
+            });
+            return params;
+        }
+
+        const urlParams = new URLSearchParams(window.location.search);
+            const subject = urlParams.get('subject');
+console.log(subject);
+        // Function to update faculty details table
+        /*function updateFacultyDetails(facultyDetails) {
+            const tbody = document.querySelector("#facultyDetails tbody");
+            tbody.innerHTML = ""; // Clear previous data
+
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${facultyDetails.fname}</td>
+                <td>${facultyDetails.femail}</td>
+                <td>${facultyDetails.fdept}</td>
+                <td>${facultyDetails.ffloor}</td>
+                <td>${facultyDetails.fblock}</td>
+                <td>${facultyDetails.fcabinno}</td>
+            `;
+            tbody.appendChild(row);
+        }*/
+        
+
+        // Function to update live status button
+      
+
+        // Function to fetch faculty details and live status
+        /*function fetchFacultyDetails() {
+            const queryParams = getQueryParams();
+            const facultyName = queryParams.facultyName;
+
+            fetch(`http://localhost:5003/get-live-status?facultyName=${facultyName}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    updateFacultyDetails(data);
+                    updateLiveStatusButton(data.live_status);
+                })
+                .catch(error => {
+                    console.error('Error fetching faculty details:', error);
+                });
+        }
+
+        // Call the fetchFacultyDetails function initially
+        fetchFacultyDetails();
+
+        // Set interval to periodically update faculty details and live status
+        setInterval(fetchFacultyDetails, 100); // Update every 0.1 seconds
+    */
+        const updateComments = () => {
+            fetch(`http://localhost:5003/get-faculties-one-subject?subject=${subject}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const commentTableBody = document.getElementById('commentTableBody');
+                    commentTableBody.innerHTML = '';
+                    data.forEach(facultyDetails => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                        <td>${facultyDetails.fname}</td>
+                        <td>${facultyDetails.section}</td>
+                
+                        `;
+                        commentTableBody.appendChild(row);
+                    });
+
+                    // Add event listeners to reply buttons
+                    //const replyButtons = document.querySelectorAll('.reply-btn');
+                    /*replyButtons.forEach(replyButton => {
+                        replyButton.addEventListener('click', () => {
+                            console.log('Reply button clicked'); 
+                            // Get the username and message for the selected row
+                            const username = replyButton.parentElement.parentElement.cells[0].textContent;
+                            const message = replyButton.parentElement.parentElement.cells[1].textContent;
+                            replyToMessage(username, message);
+                        });
+                    });*/
+                })
+                .catch(error => {
+                    console.error('Error fetching faculty comments:', error);
+                    // Handle error if needed
+                });
+        };
+        updateComments();
+
+        // Update comments every 0.1 seconds
+        setInterval(updateComments, 100);
+    
+
+    </script>
+    
+    
+    
+</body>
+
+</html>

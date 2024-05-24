@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Login Page Template - W3jar.Com</title>
+    <link href="https://fonts.googleapis.com/css2?family=Muli:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .srouce{
+            text-align: center;
+            color: #ffffff;
+            padding: 10px;
+        }
+         .password-toggle {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+    </style>
+     <style>
+        .srouce {
+            text-align: center;
+            color: #ffffff;
+            padding: 10px;
+        }
+        .password-toggle {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="menu-bar1">
+        <div class="logo">
+            <img src="manipallogo.jpg" alt="Image" class="side-image2">
+            <h2 class="titleofpage">LOCATE YOUR PROFESSOR</h2>
+        </div>
+    </div>
+        <nav class="men">
+            <ul>
+                <li class="links"><a class"home" href="mainwebpage.html">Home</a></li>
+                <li class="links"><a href="aboutus.html">About us</a></li>
+                <li class="links"><a href="login.html">Management</a></li>
+                <li class="dropdown">
+                    <a href="#" class="contact-link">Get In Touch</a>
+                    <div class="dropdown-content">
+                        <div class="dropdown-content">
+                            <a href="mailto:amrithshet@icloud.com">Email: amrithshet@icloud.com</a>
+                            <p class="phone">Phone: +91 6363531509</p>
+                            <a href="https://maps.app.goo.gl/hfHu8WZr4VwQta9r6">Address: Mangaluru, Karnataka
+                                575002</a>
+                        </div>
+                </li>
+            </ul>
+        </nav>
+    
+
+        
+             
+    
+    
+    
+ <div class="main-container">
+    <div class="wrapper">
+        <form action="" class="the-form" id="login-form">
+            <div class="form-header">
+                LOGIN
+            </div>
+            <div class="input-box">
+                <input type="text" id="username" required>
+                <label for="username">Username</label>
+            </div>
+            <div class="input-box">
+                <input type="password" id="password" required>
+                <label for="password">Password</label>
+                <span class="password-toggle" onclick="togglePasswordVisibility()"><i class="fa fa-eye"></i></span>
+            </div>
+            <button type="submit" class="btn">Login</button>
+        </form>
+
+        <form action="" class="the-form" id="register-form" >
+            <div class="form-header">
+                REGISTER
+            </div> <div class="input-box">
+                <input type="text" id="fullname" required>
+                <label for="fullname">Username</label>
+            </div>
+           
+            <div class="input-box">
+                <input type="password" id="password" required>
+                <label for="password">Password</label>
+
+            </div>
+            <button type="submit" class="btn">Register</button>
+        </form>
+    </div><!-- FORM BODY-->
+    <script>
+        function togglePasswordVisibility(formId) {
+            var passwordField = document.getElementById(formId).querySelector("#password");
+            var icon = document.getElementById(formId).querySelector(".password-toggle i");
+            
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                icon.classList.remove("fa-eye");
+                icon.classList.add("fa-eye-slash");
+            } else {
+                passwordField.type = "password";
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye");
+            }
+        }
+    </script>
+    
+    </div>
+    
+    <div class="form-footer">
+        <div>
+            <span>Don't have an account?</span> <a href="#" onclick="switchForm()">Sign Up</a>
+        </div>
+    </div><!-- FORM FOOTER -->
+</div><!-- FORM CONTAINER -->
+</div>
+
+<script>
+function switchForm() {
+    const loginForm = document.getElementById("login-form");
+    const registerForm = document.getElementById("register-form");
+
+    if (loginForm.style.display === "none") {
+        loginForm.style.display = "block";
+        registerForm.style.display = "none";
+    } else {
+        loginForm.style.display = "none";
+        registerForm.style.display = "block";
+    }
+}
+</script>
+<script>
+    function togglePasswordVisibility() {
+        var passwordField = document.getElementById("password");
+        var icon = document.querySelector(".password-toggle i");
+        
+        if (passwordField.type === "password") {
+            passwordField.type = "text";
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash");
+        } else {
+            passwordField.type = "password";
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye");
+        }
+    }
+</script>
+</body>
+</html>
