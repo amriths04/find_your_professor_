@@ -1,7 +1,7 @@
 # Find Your Professor
 
 <p align="center">
-  <img src="path/to/logo.png" alt="Find Your Professor Logo" width="200">
+  <img src="front-end/images/logo4.png" alt="Find Your Professor Logo" width="200">
 </p>
 
 Welcome to **Find Your Professor!** This project is designed to help students at MIT Manipal find information about their professors easily. Whether you're looking for a specific professor or need assistance with scheduling appointments, this platform has got you covered.
@@ -19,3 +19,34 @@ Welcome to **Find Your Professor!** This project is designed to help students at
 </ul>
 
 <hr>
+
+Screenshots
+<p align="center">
+  <img src="screenshots/screenshot1.png" alt="Screenshot 1" width="400">
+  <img src="screenshots/screenshot2.png" alt="Screenshot 2" width="400">
+</p>
+<!-- Add more screenshots as needed -->
+<hr>
+Technologies Used
+<table>
+  <tr>
+    <th>Frontend</th>
+    <td>HTML, CSS, JavaScript</td>
+  </tr>
+  <tr>
+    <th>Backend</th>
+    <td>Node.js, Express.js</td>
+  </tr>
+  <tr>
+    <th>Database</th>
+    <td>PostgreSQL</td>
+  </tr>
+</table>
+<hr>
+Contributors
+[Amrith](https://github.com/amriths04)
+[Siddhartha](https://github.com/SiddharthaMH)
+<!-- Add more contributors as needed -->
+<hr>
+License
+This project is licensed under the MIT License.
