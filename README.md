@@ -22,7 +22,7 @@ Welcome to **Find Your Professor!** This project is designed to help students at
 
 Screenshots
 <p align="center">
-  <img src="screenshots/screenshot1.png" alt="Screenshot 1" width="400">
+  <img src="front-end/images/LANDINGPAGE.jpeg" alt="Screenshot 1" width="500">
   <img src="screenshots/screenshot2.png" alt="Screenshot 2" width="400">
 </p>
 <!-- Add more screenshots as needed -->
