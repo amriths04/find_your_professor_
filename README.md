@@ -23,7 +23,15 @@ Welcome to **Find Your Professor!** This project is designed to help students at
 Screenshots
 <p align="center">
   <img src="front-end/images/LANDINGPAGE.jpeg" alt="Screenshot 1" width="500">
-  <img src="screenshots/screenshot2.png" alt="Screenshot 2" width="400">
+  <img src="front-end/images/IMAGES/s login.jpeg" alt="Screenshot 2" width="200">
+  <img src="front-end/images/IMAGES/f d b.jpeg" alt="Screenshot 2" width="200">
+  <img src="front-end/images/IMAGES/f insert scheduled.jpeg" alt="Screenshot 2" width="200">
+  <img src="front-end/images/IMAGES/f messages.jpeg" alt="Screenshot 2" width="200">
+  <img src="front-end/images/IMAGES/s dbupdate.jpeg" alt="Screenshot 2" width="200">
+  <img src="front-end/images/IMAGES/request.jpeg" alt="Screenshot 2" width="200">
+  <img src="front-end/images/IMAGES/search.jpeg" alt="Screenshot 2" width="200">
+  <img src="front-end/images/IMAGES/s messages.jpeg" alt="Screenshot 2" width="200">
+  
 </p>
 <!-- Add more screenshots as needed -->
 <hr>
